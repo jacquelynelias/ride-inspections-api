@@ -1,0 +1,6 @@
+{
+  "host": "db.endpoint",
+  "user": "username",
+  "password": "password",
+  "database": "dbname"
+}
