@@ -8,7 +8,7 @@ module.exports.handler = (event, context, callback) => {
 
   var response = {};
   var data = [];
-  const query = `SELECT cond, cond_num FROM amusement_rides GROUP BY cond_num;`;
+  const query = `SELECT cond, cond_num FROM ride_inspections GROUP BY cond_num;`;
   conx.query(
     query,
     function(err, results, fields) {

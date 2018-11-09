@@ -7,3 +7,4 @@ jspm_packages
 
 #Config file
 config/config.json
+input.json

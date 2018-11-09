@@ -9,7 +9,7 @@ module.exports.handler = (event, context, callback) => {
   var response = {};
   var data = [];
   console.log(event.pathParameters);
-  const query = `SELECT *, count(*) as count FROM amusement_rides WHERE cond_num != '15' GROUP BY company_name ORDER BY count(*) DESC`;
+  const query = `SELECT page_num, park_id as id, company_name, street, city, state, zipcode, county, count(*) as count FROM ride_inspections WHERE cond_num != '15' GROUP BY park_id ORDER BY count(*) DESC LIMIT 20`;
   conx.query(
     query,
     function(err, results, fields) {

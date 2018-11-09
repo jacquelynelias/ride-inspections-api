@@ -64,6 +64,27 @@ functions:
           path: api/top
           method: GET
           cors: true
+  getViolationByMonth:
+    handler: api/get_violation_by_month.handler
+    events:
+      - http:
+          path: api/violations/month/{year}
+          method: GET
+          cors: true
+  getInspectionByMonth:
+    handler: api/get_inspection_by_month.handler
+    events:
+      - http:
+          path: api/inspection/{year}
+          method: GET
+          cors: true    
+  getViolationByType:
+    handler: api/get_violation_by_type.handler
+    events:
+      - http:
+          path: api/violations/type/{year}
+          method: GET
+          cors: true                     
   getParkRides:
     handler: api/get_park_rides.handler
     events:
@@ -99,6 +120,13 @@ functions:
           path: api/parks/name/{name}
           method: GET
           cors: true  
+  search:
+    handler: api/search.handler
+    events:
+      - http:
+          path: api/search
+          method: GET
+          cors: true
   getParkNum:
     handler: api/get_park_num.handler
     events:

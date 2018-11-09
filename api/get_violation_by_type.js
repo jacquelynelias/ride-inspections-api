@@ -8,9 +8,8 @@ module.exports.handler = (event, context, callback) => {
 
   var response = {};
   var data = [];
-  console.log(event.pathParameters);
-  const location = decodeURIComponent(event.pathParameters.location)
-  const query = `SELECT page_num, park_id as id, company_name, street, city, state, zipcode, county FROM ride_inspections WHERE city LIKE "%${location}%" OR zipcode LIKE "%${location}%" OR county LIKE "%${location}%" GROUP BY park_id `;
+  const year = decodeURIComponent(event.pathParameters.year)
+  const query = `SELECT cond, cond_num, count(*) as num FROM ride_inspections WHERE  cond_num != '15' and YEAR(insp_d8) = "${year}" GROUP BY cond_num ORDER BY cond_num ASC LIMIT 10`;
   conx.query(
     query,
     function(err, results, fields) {

@@ -9,8 +9,8 @@ module.exports.handler = (event, context, callback) => {
   var response = {};
   var data = [];
   console.log(event.pathParameters);
-  const name = event.pathParameters.name
-  const query = `SELECT * FROM amusement_rides WHERE company_name LIKE "${name}"`;
+  const name = decodeURIComponent(event.pathParameters.name)
+  const query = `SELECT page_num, park_id as id, company_name, street, city, state, zipcode, county FROM ride_inspections WHERE company_name LIKE "%${name}%" GROUP BY park_id `;
   conx.query(
     query,
     function(err, results, fields) {

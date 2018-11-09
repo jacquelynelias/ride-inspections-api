@@ -9,9 +9,11 @@ module.exports.handler = (event, context, callback) => {
   var response = {};
   var data = [];
   console.log(event.pathParameters);
-  const county = event.pathParameters.county
-  const id = event.pathParameters.id
-  const query = `SELECT page_num, company_name, street, city, county, state, zipcode FROM amusement_rides  WHERE county like "${county}" AND page_num != "${id}" GROUP BY company_name`;
+  const county = decodeURIComponent(event.pathParameters.county)
+  console.log(county)
+  const id = decodeURIComponent(event.pathParameters.id)
+  console.log(id)
+  const query = `SELECT park_id as id, page_num, company_name, street, city, county, state, zipcode FROM ride_inspections  WHERE county like "%${county}%" AND park_id != "${id}" GROUP BY park_id`;
   conx.query(
     query,
     function(err, results, fields) {

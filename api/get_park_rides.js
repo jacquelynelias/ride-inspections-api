@@ -9,8 +9,8 @@ module.exports.handler = (event, context, callback) => {
   var response = {};
   var data = [];
   console.log(event.pathParameters);
-  const id = event.pathParameters.id
-  const query = `SELECT * FROM amusement_rides  WHERE company_name like "${id}"`;
+  const id = decodeURIComponent(event.pathParameters.id)
+  const query = `SELECT * FROM ride_inspections  WHERE park_id = "${id}"`;
   conx.query(
     query,
     function(err, results, fields) {
